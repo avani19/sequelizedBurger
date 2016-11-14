@@ -1,0 +1,47 @@
+<div class="container">
+    <section class='center-align'>
+        <img class="responsive-img" src="/assets/image/p.png">
+        <span class="green-text text-darken-3"><h4>Eat-Da-Veggi-Burger</h4></span>
+    </section>
+    <div class="row">
+        <div class="col s6">
+            <ul>
+                {{#each burgers}}
+                {{#unless this.devoured}}
+                <div class="card teal lighten-2">
+                   <p>
+                {{this.burger_name}}
+                <form action="burgers/update/{{this.id}}?_method=PUT" method="POST">
+                    <input type="hidden" name="devoured" value="true">
+                    <button type="submit" class="waves-effect waves-light btn green z-depth-4">DEVOUR IT!</button>
+                </form>
+                </p>
+                </div>
+            {{/unless}}
+            {{/each}}
+            </ul>
+        </div>
+    {{!-- burger list after Devored --}}
+<div class="col s6">
+  <ul>
+    {{#each burgers}} 
+    {{#if this.devoured}} 
+  <div class="card green">
+    <p>
+      {{this.burger_name}} 
+    </p>
+  </div>
+    {{/if}} 
+    {{/each}}
+  </ul>
+  </div>
+</div>
+{{!-- section to add burgers --}}
+<form action="burgers/create" method="POST">
+  <div>
+    <textarea type="text" name="bname" rows="3"> </textarea>
+    <span class="green-text text-darken-3"><p class="center-align"> Enter the name of the veggi burger you want to eat & click the submit button. </p></span>
+  </div>
+    <button class="btn btn-default btn-lg" type="submit">Add Burger!</button>
+</form>
+</div>
