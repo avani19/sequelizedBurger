@@ -11,7 +11,7 @@
                 <div class="card teal lighten-2">
                    <p>
                 {{this.burger_name}}
-                <form action="burgers/update/{{this.id}}?_method=PUT" method="POST">
+                <form action="/burgers/update/{{this.id}}"method="POST">
                     <input type="hidden" name="devoured" value="true">
                     <button type="submit" class="waves-effect waves-light btn green z-depth-4">DEVOUR IT!</button>
                 </form>
@@ -37,7 +37,7 @@
   </div>
 </div>
 {{!-- section to add burgers --}}
-<form action="burgers/create" method="POST">
+<form action="/burgers/create" method="POST">
   <div>
     <textarea type="text" name="bname" rows="3"> </textarea>
     <span class="green-text text-darken-3"><p class="center-align"> Enter the name of the veggi burger you want to eat & click the submit button. </p></span>

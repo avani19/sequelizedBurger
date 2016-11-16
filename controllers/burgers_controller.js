@@ -5,15 +5,13 @@ var router = express.Router();
 // Import burger.js
 // var burger = require('../models/burger.js');
 var models = require('../models');
-var sequelizeConnection = models.sequelize;
-
 router.get('/', function (req, res){
   // res.redirect('/burgers');
-    res.render('/index');
+    res.redirect('/index');
 });
 
 router.get('/index', function (req, res) {
-  models.burgers.findAll({}).then(function(data){
+  models.Burgers.findAll({}).then(function(data){
 
     var hbsObject = { burgers: data };
    // console.log(data);
@@ -24,23 +22,27 @@ router.get('/index', function (req, res) {
 
 router.post('/burgers/create', function (req, res) {
     // Sequelize Query to add new burger to database
-  models.burgers.create(
+  models.Burgers.create(
     {
       burger_name: req.body.bname,
       devoured: false
     }
   ).then(function(data){
-    // After the burger is added to the database, refresh the page
+    //refresh the page
     res.redirect('/index');
   });
 
 });
 // To update burgers on parameter id 
 router.post('/burgers/update/:id', function (req, res) {
-   // we are using aquery to find the burger will a selected id.
-  models.burgers.findOne({ where: {id: req.params.id} })
+  
+  models.Burgers.findOne({ 
+    where:
+    {
+      id: req.params.id
+    }
+  })
   .then(function(id) {
-
   // now update devoured to true
     id.update({
       devoured: true
