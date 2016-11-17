@@ -5,6 +5,7 @@ var router = express.Router();
 // Import burger.js
 // var burger = require('../models/burger.js');
 var models = require('../models');
+
 router.get('/', function (req, res){
   // res.redirect('/burgers');
     res.redirect('/index');
